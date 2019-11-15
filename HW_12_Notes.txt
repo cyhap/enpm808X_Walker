@@ -1,0 +1,23 @@
+# HW 12 Notes
+The teleop keyboard uses
+ Topic: /cmd_vel_mux/input/teleop 
+ to publish to
+ Subscriber: /mobile_base_nodelet_manager
+ 
+ The mobile_base_nodelet_manager publishes
+  Topic: mobile_base/commands/velocity
+  
+ To /gazebo node.
+ 
+ 
+ Seems like we would want control of either of those topics to control the turtle bot.
+ 
+ Looking at the /mobile_base_nodelet_manager/bond topic the messages published on it mention cmd_vel_mux and bumper2pointcloud
+ 
+ Those names make more sense to me in terms of components we might be interested in.
+ 
+  THESE ARE THE TOPICS OF INTEREST
+ * /mobile_base/commands/velocity [geometry_msgs/Twist]
+ * /mobile_base/sensors/bumper_pointcloud [sensor_msgs/PointCloud2]
+
+ 
