@@ -20,4 +20,10 @@ The teleop keyboard uses
  * /mobile_base/commands/velocity [geometry_msgs/Twist]
  * /mobile_base/sensors/bumper_pointcloud [sensor_msgs/PointCloud2]
 
- 
+ Outline Steps to accomplish task:
+  - Set a default linear velocity for the turtle bot.
+  - Publish this velocity on the topic mentioned above.
+  - Subscribe to the point cloud topic
+  - Determine when a collision is immenent via the point cloud data
+  - If a collision is imminent turn left or right until there is no collision immenent and continue on default linear velocity.
+  
