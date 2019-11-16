@@ -27,3 +27,15 @@ The teleop keyboard uses
   - Determine when a collision is immenent via the point cloud data
   - If a collision is imminent turn left or right until there is no collision immenent and continue on default linear velocity.
   
+  
+UPDATE PACKAGE.XML and CMAKE LIST:
+  geometry_msgs/Twist
+  sensor_msgs/PointCloud2
+  
+  
+TODO LIST:
+  Consider adding a service to modify the min/max velocity that the robot moves.
+  Investingate the velocity smoothing and impact on the publishing rate.
+
+Notes:
+  In the launch file use the following mapping: rosrun enpm808x_walker walker cmd_vel:=/mobile_base/commands/velocity 
