@@ -44,14 +44,17 @@ Behaviour::Behaviour()
 Behaviour::~Behaviour() {
 }
 
-void Behaviour::updateMinDist(double aDist) {
-  // FIXME UPDATE WITH ACTUAL POINT CLOUD PROCESSING
-  (void) aDist;
+void Behaviour::updateMinDist(float aDist) {
+  float collisionDist = 0.65;
+
   clearAhead = true;
+  if (aDist <= collisionDist) {
+    clearAhead = false;
+  }
 }
 
 std::pair<double, double> Behaviour::computeVelocities() {
-  double maxLinVel = 1;
+  double maxLinVel = 0.25;
   double maxAngVel = 1;
   if (clearAhead) {
     linearVel = maxLinVel;

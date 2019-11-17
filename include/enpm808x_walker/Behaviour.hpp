@@ -32,7 +32,6 @@
  */
 #pragma once
 
-#include <vector>
 #include <utility>
 
 class Behaviour {
@@ -64,12 +63,12 @@ class Behaviour {
    * @brief Uses the turtlebot sensor data to determine whether or not somthing
    * is in front of the robot. Sets the clearAhead variable accordingly.
 
-   * @param double the minimum distance observed
+   * @param float the minimum distance observed
 
    * @return None.
 
    */
-  void updateMinDist(double);
+  void updateMinDist(float);
 
   /**
 

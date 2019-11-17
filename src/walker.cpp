@@ -39,12 +39,24 @@
 
 #include "Behaviour.cpp"
 
+#include <algorithm>
 #include <memory>
+#include <vector>
+#include <math.h>
 
 std::shared_ptr<Behaviour> behaviour;
 
+bool isNan(float i) {
+  return std::isnan(i);
+}
 void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr &msg) {
-  behaviour->updateMinDist(msg->range_min);
+  std::vector<float> ranges = msg->ranges;
+  // Replace all nans with max range to get the actual minimum
+  std::replace_if(ranges.begin(), ranges.end(), isNan, msg->range_max);
+
+  float minRange = *std::min_element(ranges.begin(), ranges.end());
+  ROS_INFO_STREAM("The closest object is " << minRange << "(m) away.");
+  behaviour->updateMinDist(minRange);
 }
 
 int main(int argc, char **argv) {
