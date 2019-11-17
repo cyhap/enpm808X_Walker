@@ -5,7 +5,7 @@
     default="0"
   />
   <include file = "$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
-    <arg name="world_file" default="$(find enpm808x_walker)/worlds/hw-12.world"/>
+    <arg name="world_file" default="$(find enpm808x_walker)/worlds/lastHope.world"/>
   </include>
   <node
     name="walkerNode"
