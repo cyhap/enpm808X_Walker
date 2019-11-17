@@ -35,7 +35,7 @@
 
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
-#include "sensor_msgs/PointCloud2.h"
+#include "sensor_msgs/LaserScan.h"
 
 #include "Behaviour.cpp"
 
@@ -43,8 +43,8 @@
 
 std::shared_ptr<Behaviour> behaviour;
 
-void pntCldCallback(const sensor_msgs::PointCloud2::ConstPtr &msg) {
-  behaviour->updateInfo(msg);
+void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr &msg) {
+  behaviour->updateMinDist(msg->range_min);
 }
 
 int main(int argc, char **argv) {
@@ -61,8 +61,7 @@ int main(int argc, char **argv) {
   // Publish on the topic required to move turtlebot
   // This will be remmapped in the launch file.
   auto pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1000);
-  auto sub = n.subscribe("/mobile_base/sensors/bumper_pointcloud", 1000,
-                         pntCldCallback);
+  auto sub = n.subscribe("/scan", 1000, laserScanCallback);
 
   // Publish at 10 Hz.
   ros::Rate loop_rate(10.0);

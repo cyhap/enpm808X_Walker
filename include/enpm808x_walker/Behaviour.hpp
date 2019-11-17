@@ -35,9 +35,6 @@
 #include <vector>
 #include <utility>
 
-#include "sensor_msgs/PointCloud2.h"
-
-
 class Behaviour {
  public:
   /**
@@ -67,13 +64,12 @@ class Behaviour {
    * @brief Uses the turtlebot sensor data to determine whether or not somthing
    * is in front of the robot. Sets the clearAhead variable accordingly.
 
-   * @param sensor_msgs::PointCloud2ConstPtr The Point cloud data that will be
-   * used to determine if the robot is in danger of colliding.
+   * @param double the minimum distance observed
 
    * @return None.
 
    */
-  void updateInfo(sensor_msgs::PointCloud2ConstPtr);
+  void updateMinDist(double);
 
   /**
 

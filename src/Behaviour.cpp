@@ -44,9 +44,9 @@ Behaviour::Behaviour()
 Behaviour::~Behaviour() {
 }
 
-void Behaviour::updateInfo(sensor_msgs::PointCloud2ConstPtr aPntCld) {
+void Behaviour::updateMinDist(double aDist) {
   // FIXME UPDATE WITH ACTUAL POINT CLOUD PROCESSING
-  (void) aPntCld;
+  (void) aDist;
   clearAhead = true;
 }
 

@@ -18,7 +18,7 @@ The teleop keyboard uses
  
   THESE ARE THE TOPICS OF INTEREST
  * /mobile_base/commands/velocity [geometry_msgs/Twist]
- * /mobile_base/sensors/bumper_pointcloud [sensor_msgs/PointCloud2]
+ * /scan [sensor_msgs/LaserScan]
 
  Outline Steps to accomplish task:
   - Set a default linear velocity for the turtle bot.
@@ -30,7 +30,7 @@ The teleop keyboard uses
   
 UPDATE PACKAGE.XML and CMAKE LIST:
   geometry_msgs/Twist
-  sensor_msgs/PointCloud2
+  sensor_msgs/LaserScan
   
   
 TODO LIST:
@@ -39,3 +39,4 @@ TODO LIST:
 
 Notes:
   In the launch file use the following mapping: rosrun enpm808x_walker walker cmd_vel:=/mobile_base/commands/velocity 
+   also maps to this and still works. /cmd_vel_mux/input/teleop  
