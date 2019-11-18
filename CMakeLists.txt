@@ -192,7 +192,7 @@ include_directories(
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
 
-add_executable(walker src/walker.cpp)
+add_executable(walker src/walker.cpp src/Behaviour.cpp)
 target_link_libraries(walker ${catkin_LIBRARIES})
 
 #############
