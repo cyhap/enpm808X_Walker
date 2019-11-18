@@ -34,18 +34,22 @@
  */
 #include "Behaviour.hpp"
 
-Behaviour::Behaviour()
+// Note the constructor assumes there is an object in front of it until it gets
+// a reading telling it otherwise. Resulting in turning at the very beginning
+// of the simulation.
+Behaviour::Behaviour(const double &aColDist, const double &aLinVel,
+                     const double &angVel)
     :
-    linearVel(0.0),
-    angularVel(0.0),
-    clearAhead(false) {
+    clearAhead(false),
+    collisionDist(aColDist),
+    maxLinVel(aLinVel),
+    maxAngVel(angVel) {
 }
 
 Behaviour::~Behaviour() {
 }
 
 void Behaviour::updateMinDist(float aDist) {
-  float collisionDist = 0.65;
 
   clearAhead = true;
   if (aDist <= collisionDist) {
@@ -54,8 +58,8 @@ void Behaviour::updateMinDist(float aDist) {
 }
 
 std::pair<double, double> Behaviour::computeVelocities() {
-  double maxLinVel = 0.25;
-  double maxAngVel = 1;
+  double linearVel;
+  double angularVel;
   if (clearAhead) {
     linearVel = maxLinVel;
     angularVel = 0;

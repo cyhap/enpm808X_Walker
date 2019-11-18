@@ -40,12 +40,17 @@ class Behaviour {
 
    * @brief Constructor for the Behaviour Class
 
-   * @param None.
+   * @param const double &. The Collision Distance Used
+
+   * @param const double &. The Linear Velocity Used
+
+   * @param const double &. The Angular Velocity Used
 
    * @return None.
 
    */
-  Behaviour();
+  Behaviour(const double &aColDist = 0.65, const double &aLinVel = 0.25,
+            const double &angVel = 1);
 
   /**
 
@@ -60,7 +65,7 @@ class Behaviour {
 
   /**
 
-   * @brief Uses the turtlebot sensor data to determine whether or not somthing
+   * @brief Uses the turtlebot sensor data to determine whether or not something
    * is in front of the robot. Sets the clearAhead variable accordingly.
 
    * @param float the minimum distance observed
@@ -83,8 +88,26 @@ class Behaviour {
    */
   std::pair<double, double> computeVelocities();
 
+  /**
+
+   * @brief Returns whether or not the robot can move forward. This function was
+   * added so that unit testing could take place on the updateMinDist function.
+
+   * @param None
+
+   * @return bool. Whether or not there is something in range that is less than
+   * the collisionDist member variable.
+
+   */
+  bool getClearAhead();
+
  private:
-  double linearVel;
-  double angularVel;
+  // This is the boolean indicating whether the robot can move forward.
   bool clearAhead;
+  // This is the minimum distance reading allowed before turning starts.
+  float collisionDist;
+  // This is linear velocity when path is clear
+  double maxLinVel;
+  // This is the angular velocity when path is not clear.
+  double maxAngVel;
 };
