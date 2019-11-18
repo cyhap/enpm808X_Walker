@@ -33,16 +33,17 @@
  *
  */
 
+#include <math.h>
+#include <algorithm>
+#include <memory>
+#include <vector>
+
+#include "Behaviour.hpp"
+
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
 
-#include "Behaviour.cpp"
-
-#include <algorithm>
-#include <memory>
-#include <vector>
-#include <math.h>
 
 std::shared_ptr<Behaviour> behaviour;
 
@@ -60,7 +61,6 @@ void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr &msg) {
 }
 
 int main(int argc, char **argv) {
-
   // Initialize the walker node.
   ros::init(argc, argv, "walker");
   // Initialize the shared pointer to the behaviour class that will be used to
@@ -79,7 +79,6 @@ int main(int argc, char **argv) {
   ros::Rate loop_rate(10.0);
 
   while (ros::ok()) {
-
     // Publish the velocity as determined by the behavior class.
     geometry_msgs::Twist msg;  // Call to behavior class here.
     std::pair<double, double> output = behaviour->computeVelocities();

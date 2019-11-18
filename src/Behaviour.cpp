@@ -50,7 +50,6 @@ Behaviour::~Behaviour() {
 }
 
 void Behaviour::updateMinDist(float aDist) {
-
   clearAhead = true;
   if (aDist <= collisionDist) {
     clearAhead = false;
@@ -63,8 +62,7 @@ std::pair<double, double> Behaviour::computeVelocities() {
   if (clearAhead) {
     linearVel = maxLinVel;
     angularVel = 0;
-  }
-  else {
+  } else {
     linearVel = 0;
     angularVel = maxAngVel;
   }
