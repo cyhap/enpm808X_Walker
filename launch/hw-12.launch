@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+  <arg
+    name="recordChatter"
+    default="0"
+  />
+  <include file = "$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
+    <arg name="world_file" default="$(find enpm808x_walker)/worlds/lastHope.world"/>
+  </include>
+  <node
+    name="walkerNode"
+    pkg="enpm808x_walker"
+    type="walker"
+   >
+    <!-- Re-map the cmd_vel commands to the topics the nodelet manager subscribes to.-->
+    <!-- Instead of /cmd_vel_mux/input/teleop mapping to /mobile_base/commands/velocity also works.-->
+    <remap
+     from="cmd_vel"
+     to="/cmd_vel_mux/input/teleop"
+     />
+  </node>
+  <node
+   name="recordAllButRGB"
+   pkg="rosbag"
+   type="record"
+   args = "-aO walkerAll.bag -x /camera/rgb/.*"
+   if="$(arg recordChatter)"
+  />
+</launch>
