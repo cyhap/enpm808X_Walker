@@ -74,3 +74,5 @@ rosbag play <Path to bag File in Results Folder>
 ```
 Then one can run the walker node as specified in the instructions above. The output twist messages may be observed by monitoring the cmd_vel topic
 
+Saved bag file can be found using this link:
+https://drive.google.com/file/d/1OH68giXii9qfq6x2_J-zk5q0zkfTzu27/view?usp=sharing
